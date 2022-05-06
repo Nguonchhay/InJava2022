@@ -16,6 +16,7 @@ public class InJava2022 {
         // week3Obj.task2();
         // week3Obj.task3();
         // week3Obj.task4();
-        week3Obj.task5();
+        // week3Obj.task5();
+        week3Obj.task6();
     }
 }

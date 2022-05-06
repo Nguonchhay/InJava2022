@@ -1,6 +1,8 @@
 package com.nguonchhay;
 
 import java.sql.Array;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Week3Demo {
 
@@ -142,5 +144,46 @@ public class Week3Demo {
 //        }
 
         System.out.println("Second max value: " + secondMaxValue);
+    }
+
+    public void task6() {
+        final int countProduct = 100;
+        String[] names = new String[countProduct];
+        double[] unitPrices = new double[countProduct];
+        int[] quantities = new int[countProduct];
+        int numProduct = 0;
+
+        char answer = ' ';
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("--------------");
+            System.out.print("Product name: ");
+            names[numProduct] = scanner.nextLine();
+
+            System.out.print("Quantity: ");
+            quantities[numProduct] = scanner.nextInt();
+
+            System.out.print("Unit Price: ");
+            unitPrices[numProduct] = scanner.nextDouble();
+
+            System.out.print("\nPress y|Y to continue: ");
+            answer = scanner.next().toLowerCase().charAt(0);
+
+            numProduct++;
+        } while(answer == 'y');
+
+        // Display products
+        System.out.println("\n\t Product Info");
+        System.out.println("\n#\tProduct Name\tQuantity\tUnit Price\tTotal");
+        double total = 0;
+        for (int i = 0; i < numProduct; i++) {
+            double subTotal = quantities[i] * unitPrices[i];
+            total += subTotal;
+            System.out.println(
+                (i + 1) + "\t" + names[i] + "\t" + quantities[i] + "\t" + unitPrices[i] + "\t" + subTotal
+            );
+        }
+        System.out.println("\n---------------------------------------");
+        System.out.println("\t\t\t " + total);
     }
 }
