@@ -11,12 +11,22 @@ public class InJava2022 {
         // week2Obj.task5();
 
         // Week 3 codes
-        Week3Demo week3Obj = new Week3Demo();
+        // Week3Demo week3Obj = new Week3Demo();
         // week3Obj.task1();
         // week3Obj.task2();
         // week3Obj.task3();
         // week3Obj.task4();
         // week3Obj.task5();
-        week3Obj.task6();
+        // week3Obj.task6();
+
+        // Week 4 codes
+        Week4Demo week4Obj = new Week4Demo();
+        // week4Obj.task1();
+        // week4Obj.task2();
+        // week4Obj.task3();
+        // week4Obj.task4();
+        // week4Obj.task5();
+        // week4Obj.task5More();
+        week4Obj.task6();
     }
 }
