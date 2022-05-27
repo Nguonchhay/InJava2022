@@ -1,5 +1,7 @@
 package com.nguonchhay;
 
+import com.nguonchhay.week5solution1.Week5Solution1;
+
 public class InJava2022 {
     public static void main(String[] args) {
         // Week 2 codes
@@ -30,7 +32,9 @@ public class InJava2022 {
         // week4Obj.task6();
 
         // Week 5codes
-        Week5Demo obj = new Week5Demo();
-        obj.demo();
+        // Week5Demo obj = new Week5Demo();
+        // obj.demo();
+
+        Week5Solution1.demo();
     }
 }
