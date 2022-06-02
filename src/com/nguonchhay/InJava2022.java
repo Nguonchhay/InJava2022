@@ -1,6 +1,7 @@
 package com.nguonchhay;
 
 import com.nguonchhay.week5solution1.Week5Solution1;
+import com.nguonchhay.week5solution2.Week5Solution2;
 
 public class InJava2022 {
     public static void main(String[] args) {
@@ -35,6 +36,7 @@ public class InJava2022 {
         // Week5Demo obj = new Week5Demo();
         // obj.demo();
 
-        Week5Solution1.demo();
+        // Week5Solution1.demo();
+        Week5Solution2.demo();
     }
 }
