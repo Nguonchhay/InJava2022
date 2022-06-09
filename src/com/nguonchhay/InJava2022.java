@@ -2,6 +2,7 @@ package com.nguonchhay;
 
 import com.nguonchhay.week5solution1.Week5Solution1;
 import com.nguonchhay.week5solution2.Week5Solution2;
+import com.nguonchhay.week5solution3.Week5Solution3;
 
 public class InJava2022 {
     public static void main(String[] args) {
@@ -37,6 +38,8 @@ public class InJava2022 {
         // obj.demo();
 
         // Week5Solution1.demo();
-        Week5Solution2.demo();
+        // Week5Solution2.demo();
+
+        Week5Solution3.demo();
     }
 }
