@@ -4,6 +4,7 @@ import com.nguonchhay.week5solution1.Week5Solution1;
 import com.nguonchhay.week5solution2.Week5Solution2;
 import com.nguonchhay.week5solution3.Week5Solution3;
 import com.nguonchhay.week7.Week7Demo;
+import com.nguonchhay.week9.Week9Demo;
 
 public class InJava2022 {
     public static void main(String[] args) {
@@ -43,6 +44,8 @@ public class InJava2022 {
 
         // Week5Solution3.demo();
 
-        Week7Demo.demo();
+        // Week7Demo.demo();
+
+        Week9Demo.demo();
     }
 }
