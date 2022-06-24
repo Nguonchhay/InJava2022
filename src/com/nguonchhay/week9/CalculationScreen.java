@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class CalculationScreen extends JFrame {
 
-    JTextField txtValue1, txtValue2, txtResult;
+    private JTextField txtValue1, txtValue2, txtResult;
 
     public CalculationScreen() {
         super.setTitle("Simple Calculator");
@@ -60,28 +60,32 @@ public class CalculationScreen extends JFrame {
         // Add buttons components
         JButton btnAdd = new JButton(" + ");
         btnAdd.setBounds(80, initY + 120, 50, 30);
-        // btnAdd.addActionListener(new ButtonEventClick(this, btnAdd));
-        btnAdd.addActionListener(e -> {
-            txtResult.setText(getSum() + "");
-        });
+//        btnAdd.addActionListener(e -> {
+//            txtResult.setText(getSum() + "");
+//        });
+        btnAdd.addActionListener(new ButtonEventClick(this, "+"));
         super.add(btnAdd);
 
         JButton btnMinus = new JButton(" - ");
         btnMinus.setBounds(140, initY + 120, 50, 30);
-        btnMinus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(CalculationScreen.this, "Button Minus clicked!");
-            }
-        });
+//        btnMinus.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                //JOptionPane.showMessageDialog(CalculationScreen.this, "Button Minus clicked!");
+//                txtResult.setText(getMinus() + "");
+//            }
+//        });
+        btnMinus.addActionListener(new ButtonEventClick(this, "-"));
         super.add(btnMinus);
 
         JButton btnMul = new JButton(" * ");
         btnMul.setBounds(200, initY + 120, 50, 30);
+        btnMul.addActionListener(new ButtonEventClick(this, "*"));
         super.add(btnMul);
 
         JButton btnDiv = new JButton(" / ");
         btnDiv.setBounds(260, initY + 120, 50, 30);
+        btnDiv.addActionListener(new ButtonEventClick(this, "/"));
         super.add(btnDiv);
 
         // Add result components
@@ -101,6 +105,12 @@ public class CalculationScreen extends JFrame {
         return value1 + value2;
     }
 
+    private double getMinus() {
+        double value1 = Double.parseDouble(txtValue1.getText());
+        double value2 = Double.parseDouble(txtValue2.getText());
+        return value1 - value2;
+    }
+
     public void display() {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setLayout(null);
@@ -111,17 +121,34 @@ public class CalculationScreen extends JFrame {
     }
 
     class ButtonEventClick implements ActionListener {
-        private JFrame frame;
-        private JButton button;
+        private CalculationScreen frame;
+        private String sign;
 
-        public ButtonEventClick(JFrame frame, JButton btn) {
+        public ButtonEventClick(CalculationScreen frame, String sign) {
             this.frame = frame;
-            this.button = btn;
+            this.sign = sign;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(frame, "Click me");
+            double value1 = Double.parseDouble(txtValue1.getText());
+            double value2 = Double.parseDouble(txtValue2.getText());
+            switch (sign) {
+                case "+":
+                    txtResult.setText((value1 + value2) + "");
+                    break;
+                case "-":
+                    txtResult.setText((value1 - value2) + "");
+                    break;
+                case "*":
+                    txtResult.setText((value1 * value2) + "");
+                    break;
+                case "/":
+                    txtResult.setText((value1 / value2) + "");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(frame, "Please select operator");
+            }
         }
     }
 }
