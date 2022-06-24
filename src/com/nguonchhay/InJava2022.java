@@ -1,5 +1,6 @@
 package com.nguonchhay;
 
+import com.nguonchhay.galleryapp.MainApp;
 import com.nguonchhay.week5solution1.Week5Solution1;
 import com.nguonchhay.week5solution2.Week5Solution2;
 import com.nguonchhay.week5solution3.Week5Solution3;
@@ -46,6 +47,7 @@ public class InJava2022 {
 
         // Week7Demo.demo();
 
-        Week9Demo.demo();
+        // Week9Demo.demo();
+        MainApp.launch();
     }
 }
