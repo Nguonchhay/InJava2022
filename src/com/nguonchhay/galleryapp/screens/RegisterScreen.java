@@ -1,22 +1,28 @@
 package com.nguonchhay.galleryapp.screens;
 
+import com.nguonchhay.galleryapp.services.MySQLService;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class RegisterScreen extends JFrame {
 
     private JTextField txtEmail, txtFullName;
     private JPasswordField txtPassword, txtConfirmPassword;
-    private JRadioButton radMale, radFemale, radOther;
     private JButton btnSignUp;
+
+    private MySQLService mySQLService;
 
     public RegisterScreen() {
         super("Sign Up");
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(350, 400);
         super.setLayout(null);
+        super.setLocationRelativeTo(null);
 
         initUI();
     }
@@ -70,6 +76,9 @@ public class RegisterScreen extends JFrame {
         // Button field
         btnSignUp = new JButton("Sign Up");
         btnSignUp.setBounds(130, initY + 240, 80, 30);
+        btnSignUp.addActionListener(e -> {
+            userForm();
+        });
         super.add(btnSignUp);
 
         // Sign in
@@ -100,6 +109,43 @@ public class RegisterScreen extends JFrame {
             public void mouseExited(MouseEvent e) {}
         });
         super.add(lblSignIn);
+    }
+
+    private void userForm() {
+        String fullname = txtFullName.getText();
+        String email = txtEmail.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+        String confirmPassword = String.valueOf(txtConfirmPassword.getPassword());
+        if (
+                fullname.equalsIgnoreCase("") ||
+                email.equalsIgnoreCase("") ||
+                password.equalsIgnoreCase("") ||
+                confirmPassword.equalsIgnoreCase("")
+        ) {
+            JOptionPane.showMessageDialog(this, "All fields are required!");
+        } else {
+            if (password.equals(confirmPassword)) {
+                // Save data
+                mySQLService = new MySQLService();
+                try {
+                    Statement stm = mySQLService.getConnection();
+                    String insertSQL = String.format("INSERT INTO users(fullname,email,password) VALUES('%s','%s','%s')", fullname, email, password);
+                    int result = stm.executeUpdate(insertSQL);
+                    if (result == 1) {
+                        LoginScreen screen = new LoginScreen();
+                        screen.open();
+                        this.close();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Cannot save user information");
+                    }
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, "Something went wrong!");
+                    e.printStackTrace();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Password and confirm password must be the same");
+            }
+        }
     }
 
     public void open() {

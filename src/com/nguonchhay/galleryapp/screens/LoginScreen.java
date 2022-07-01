@@ -16,6 +16,7 @@ public class LoginScreen extends JFrame {
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setSize(350, 400);
         super.setLayout(null);
+        super.setLocationRelativeTo(null);
 
         initUI();
     }
