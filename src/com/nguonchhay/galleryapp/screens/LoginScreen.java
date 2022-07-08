@@ -1,9 +1,16 @@
 package com.nguonchhay.galleryapp.screens;
 
+import com.nguonchhay.galleryapp.services.MySQLService;
+import com.nguonchhay.galleryapp.services.MySQLServiceSingleton;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class LoginScreen extends JFrame {
 
@@ -57,6 +64,9 @@ public class LoginScreen extends JFrame {
         // Button field
         btnLogin = new JButton("Sign In");
         btnLogin.setBounds(130, initY + 170, 80, 30);
+        btnLogin.addActionListener(e -> {
+            doLogin();
+        });
         super.add(btnLogin);
 
         // Sign up
@@ -87,6 +97,38 @@ public class LoginScreen extends JFrame {
             public void mouseExited(MouseEvent e) {}
         });
         super.add(lblSignUp);
+    }
+
+    private void doLogin() {
+        String email = txtEmail.getText();
+        String password = String.valueOf(txtPassword.getPassword());
+        if (email.equalsIgnoreCase("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "All fields are required!");
+        } else {
+            try {
+                Connection connection = MySQLServiceSingleton.getConnection();
+                Statement stm = connection.createStatement();
+                String queryUserSQL = "SELECT * FROM users WHERE email='" + email + "' AND password='" + password + "' LIMIT 1;";
+                ResultSet resultSet = stm.executeQuery(queryUserSQL);
+                boolean isUserExist = false;
+                while (resultSet.next()) {
+                    isUserExist = true;
+                    break;
+                }
+
+                if (isUserExist) {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                    new UsersScreen().open();
+                    this.close();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid credentials!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void open() {

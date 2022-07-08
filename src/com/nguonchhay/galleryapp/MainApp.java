@@ -1,6 +1,7 @@
 package com.nguonchhay.galleryapp;
 
 import com.nguonchhay.galleryapp.screens.LoginScreen;
+import com.nguonchhay.galleryapp.screens.UsersScreen;
 
 import javax.swing.*;
 
@@ -14,7 +15,8 @@ public class MainApp {
             System.out.println("System does not support SystemLookAndFeel");
         }
 
-        LoginScreen loginScreen = new LoginScreen();
-        loginScreen.open();
+//        LoginScreen loginScreen = new LoginScreen();
+//        loginScreen.open();
+        new UsersScreen().open();
     }
 }
